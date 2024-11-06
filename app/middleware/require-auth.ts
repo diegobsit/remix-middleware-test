@@ -10,18 +10,11 @@ export async function requireAuth({ request, context, next }: MiddlewareFunction
     context.user = user;
   }
 
-  console.log("JE PASSE ICI");
-
   if (!user && url.pathname !== "/sign-in") {
-    console.log("JE PASSE ICI 1");
-
     throw redirect(`/sign-in`);
   } else if (user && url.pathname === "/sign-in") {
-    console.log("JE PASSE ICI 2");
-
     throw redirect("/");
   }
-  console.log("JE PASSE ICI 3");
 
   return next();
 }
